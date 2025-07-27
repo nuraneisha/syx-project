@@ -69,6 +69,9 @@ export default function DeleteAccount() {
                             <h2 style={{ fontSize: "20px" }}>
                                 If you withdraw from our membership, you will lose access to your purchase history service and membership connection to SYX
                             </h2>
+                            <h2 style={{ color: "red", fontSize: "15px" }}>
+                                This delete cannot be undone
+                            </h2>
                             <Button onClick={handleDeleteAccount} style={{ borderRadius: "10px" }} variant="danger">
                                 Delete Account
                             </Button>
