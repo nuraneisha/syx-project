@@ -72,7 +72,7 @@ export default function Profile() {
                             </div>
                             <div style={{ marginTop: "20px" }}>
                                 <h4>Membership barcode</h4>
-                                <Barcode value={userId} width={2} height={100} displayValue={true} background="#ffffff" lineColor="#000000" />
+                                <Barcode value={userId} width={1.5} height={80} displayValue={true} background="#ffffff" lineColor="#000000" />
                                 <p><strong>Please show your membership barcode at the cashier when you purchase items.</strong></p>
                             </div>
                         </Col>
