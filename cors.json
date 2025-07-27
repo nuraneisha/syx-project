@@ -1,0 +1,13 @@
+[
+    {
+        "origin": [
+            "https://syx-project.vercel.app"
+        ],
+        "method": [
+            "GET",
+            "POST",
+            "PUT"
+        ],
+        "maxAgeSeconds": 3600
+    }
+]
