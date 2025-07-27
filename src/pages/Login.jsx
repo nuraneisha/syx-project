@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Row, Col, Button, Image, Form, Modal } from "react-bootstrap";
-import login from "../../images/login.jpg";
+
 import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
@@ -131,7 +131,7 @@ export default function Login({ show, setShow }) {
             <Modal.Body>
                 <Row className="mx-0">
                     <Col xs={12} md={7} className="p-0">
-                        <Image src={login} alt="login" fluid style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                        <Image src="/images/login.jpg" alt="login" fluid style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     </Col>
                     <Col xs={12} md={5} className="d-flex flex-column justify-content-center p-4">
                         <Button className="rounded-pill mb-2" variant="outline-dark" onClick={handleGoogleLogin}>
