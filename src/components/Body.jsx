@@ -67,26 +67,26 @@ export default function Body() {
                     <Carousel fade controls>
                         <Carousel.Item>
                             <img
-                                src="src/assets/images/image3.jpg"
+                                src="/images/image3.jpg"
                                 alt="first image"
                                 className="carousel-media"
                             />
                         </Carousel.Item>
                         <Carousel.Item>
                             <video autoPlay muted loop className="carousel-media">
-                                <source src="src/assets/videos/video1.mp4" type="video/mp4" />
+                                <source src="/videos/video1.mp4" type="video/mp4" />
                             </video>
                         </Carousel.Item>
                         <Carousel.Item>
                             <img
-                                src="src/assets/images/image2.png"
+                                src="/images/image2.png"
                                 alt="second image"
                                 className="carousel-media"
                             />
                         </Carousel.Item>
                         <Carousel.Item>
                             <video autoPlay muted loop className="carousel-media">
-                                <source src="src/assets/videos/video2.mp4" type="video/mp4" />
+                                <source src="/videos/video2.mp4" type="video/mp4" />
                             </video>
                         </Carousel.Item>
                     </Carousel>
