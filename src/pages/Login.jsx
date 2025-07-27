@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Row, Col, Button, Image, Form, Modal } from "react-bootstrap";
-import login from "../assets/images/login.jpg";
+import login from "../../images/login.jpg";
 import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,

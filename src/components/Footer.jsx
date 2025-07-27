@@ -1,4 +1,4 @@
-import logo from "../assets/images/logo.png";
+import logo from "../../images/logo.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Footer() {

@@ -1,5 +1,5 @@
 import { Navbar, Nav, Container, Form, InputGroup, Button, NavbarCollapse } from "react-bootstrap";
-import logo from "../assets/images/logo.png";
+import logo from "../../images/logo.png";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
