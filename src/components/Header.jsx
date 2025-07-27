@@ -1,5 +1,5 @@
 import { Navbar, Nav, Container, Form, InputGroup, Button, NavbarCollapse } from "react-bootstrap";
-import logo from "../../images/logo.png";
+
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
@@ -68,7 +68,7 @@ export default function Header({ setShowLogin }) {
                         onClick={() => navigate("/")}
                         style={{ cursor: "pointer" }}
                     >
-                        <img src={logo} alt="logo" style={{ width: "150px", height: "70px" }} />
+                        <img src="/images/logo.png" alt="logo" style={{ width: "150px", height: "70px" }} />
                     </Navbar.Brand>
 
                     {/* Toggle for collapse */}
@@ -89,7 +89,7 @@ export default function Header({ setShowLogin }) {
                                 onClick={() => navigate("/")}
                                 style={{ cursor: "pointer" }}
                             >
-                                <img src={logo} alt="logo" style={{ width: "180px", height: "80px" }} />
+                                <img src="/images/logo.png" alt="logo" style={{ width: "180px", height: "80px" }} />
                             </Navbar.Brand>
 
                             {/* Right: icons + search */}

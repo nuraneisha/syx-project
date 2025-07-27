@@ -1,4 +1,4 @@
-import logo from "../../images/logo.png";
+
 import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
@@ -9,7 +9,7 @@ export default function Footer() {
                 <div className="row text-center text-md-start">
                     {/* Logo Section */}
                     <div className="col-12 col-md-3 d-flex justify-content-center align-items-center mb-3 mb-md-0" onClick={() => navigate("/")}>
-                        <img src={logo} alt="logo" style={{ width: "150px", height: "70px", cursor: "pointer" }} />
+                        <img src="/images/logo.png" alt="logo" style={{ width: "150px", height: "70px", cursor: "pointer" }} />
                     </div>
 
                     {/* Company Links */}
