@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react"
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Container, Row, Col, Card, Button, InputGroup, Form } from "react-bootstrap"
 import Layout from "../components/Layout"
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartProvider"
+import { AuthContext } from "../context/AuthProvider";
 
 export default function ShoppingCart() {
     const [product, setProduct] = useState([]);
@@ -13,6 +13,7 @@ export default function ShoppingCart() {
     const [selectedItems, setSelectedItems] = useState({});
     const [selected, setSelected] = useState([]);
     const { updateCartCount } = useContext(CartContext);
+    const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const fetchData = async (userId) => {
@@ -106,17 +107,15 @@ export default function ShoppingCart() {
         }
     }
     useEffect(() => {
-        const auth = getAuth();
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                setUserId(user.uid);
-                fetchData(user.uid);
-                totalCost(user.uid);
-                fetchSelectedItems(user.uid);
-            }
-        });
-        return () => unsubscribe();
-    }, []);
+
+        if (currentUser) {
+            setUserId(currentUser.uid);
+            fetchData(currentUser.uid);
+            totalCost(currentUser.uid);
+            fetchSelectedItems(currentUser.uid);
+        }
+
+    }, [currentUser]);
 
     const handleCheckout = async () => {
         if (selected.length === 0) {
