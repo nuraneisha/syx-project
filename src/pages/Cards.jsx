@@ -228,9 +228,6 @@ export default function Cards() {
                                                     {response && (
                                                         <>
                                                             <p className="mt-3" style={{ fontWeight: "bold" }}>{response}</p>
-                                                            <Button variant="primary" className="ms-2">
-                                                                Continue
-                                                            </Button>
                                                             <Button variant="danger" className="ms-2" onClick={handleClose}>
                                                                 Discard
                                                             </Button>
