@@ -3,7 +3,7 @@ import { Card, Row, Col, Button, Container } from "react-bootstrap";
 import Layout from "../components/Layout";
 import { getAuth } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
-import { CartContext } from "./context/CartProvider"
+import { CartContext } from "../context/CartProvider"
 
 export default function Apparel() {
     const [apparel, setApparel] = useState([]);

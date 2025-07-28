@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { getAuth, signOut } from "firebase/auth";
-import { CartContext } from "./context/CartProvider"
+import { CartContext } from "../context/CartProvider"
 
 export default function Header({ setShowLogin }) {
     const { currentUser } = useContext(AuthContext);
