@@ -16,6 +16,7 @@ import Update from "./pages/Update";
 import DeleteAccount from "./pages/DeleteAccount";
 import ReviewForm from "./pages/ReviewForm";
 import Review from "./components/Review";
+import Success from "./pages/Success";
 
 export default function App() {
 
@@ -39,6 +40,7 @@ export default function App() {
                 <Route path="/delete" element={<DeleteAccount />} />
                 <Route path="/review/form" element={<ReviewForm />} />
                 <Route path="/review" element={<Review />} />
+                <Route path="/sucess" element={<Success />} />
             </Routes>
         </BrowserRouter>
     );
