@@ -15,7 +15,7 @@ export default function Sucess() {
                 await fetch(`https://syx-project.vercel.app/success?session_id=${sessionId}&user_id=${user_id}`);
                 setTimeout(() => {
                     navigate("/");
-                }, 2000);
+                }, 10000);
             }
             catch (error) {
                 console.error(error)
