@@ -1,15 +1,15 @@
 import Layout from "../components/Layout";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Row, Col, Card, Button, Container } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
-import { onAuthStateChanged } from "firebase/auth";
+import { AuthContext } from "../context/AuthProvider";
+import { CartContext } from "../context/CartProvider"
 
 export default function Products() {
     const [products, setProducts] = useState([]);
-    const [, setCart] = useState("")
     const navigate = useNavigate();
-    const auth = getAuth();
+    const { currentUser } = useContext(AuthContext);
+    const { updateCartCount } = useContext(CartContext);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -28,35 +28,32 @@ export default function Products() {
     }, []);
 
     const insertProduct = async (product) => {
-        onAuthStateChanged(auth, async (user) => {
-            if (!user) {
-                alert("You must be logged in to add to cart.");
-                return;
-            }
-            try {
-                const response = await fetch(`https://syx-backend-project.vercel.app/products/apparel/${product.prod_id}`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        prod_name: product.prod_name,
-                        prod_education: product.prod_education,
-                        prod_education1: product.prod_education1,
-                        prod_price: product.prod_price,
-                        user_id: user.uid,
-                    }),
-                });
+        if (!currentUser) {
+            alert("You must be logged in to add to cart.");
+            return;
+        }
+        try {
+            const response = await fetch(`https://syx-backend-project.vercel.app/products/apparel/${product.prod_id}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    prod_name: product.prod_name,
+                    prod_education: product.prod_education,
+                    prod_education1: product.prod_education1,
+                    prod_price: product.prod_price,
+                    user_id: currentUser.uid,
+                }),
+            });
 
-                if (response.ok) {
-                    const data = await response.json();
-                    setCart(data);
-                    alert("Product added to cart!");
-                } else {
-                    alert("Failed to add to cart.");
-                }
-            } catch (error) {
-                console.error("Error adding to cart:", error);
+            if (response.ok) {
+                alert("Product added to cart!");
+                await updateCartCount();
+            } else {
+                alert("Failed to add to cart.");
             }
-        })
+        } catch (error) {
+            console.error("Error adding to cart:", error);
+        }
     };
 
     return (

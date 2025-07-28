@@ -2,9 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import { Row, Col, Container, Card, Button, Form, InputGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
-import { getAuth } from "firebase/auth";
-import { onAuthStateChanged } from "firebase/auth";
 import { CartContext } from "../context/CartProvider"
+import { AuthContext } from "../context/AuthProvider";
 
 export default function Cards() {
     const [hover, setHover] = useState(null);
@@ -15,11 +14,10 @@ export default function Cards() {
     const [height, setHeight] = useState("");
     const [form, setForm] = useState(false);
     const [response, setResponse] = useState("");
-    const [, setCart] = useState("")
     const [apparelResponse, setApparelResponse] = useState(false);
     const { id } = useParams();
-    const auth = getAuth();
     const { updateCartCount } = useContext(CartContext);
+    const { currentUser } = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -49,42 +47,40 @@ export default function Cards() {
 
 
     const insertProduct = async () => {
-        onAuthStateChanged(auth, async (user) => {
-            if (!user) {
-                alert("You must be logged in to add to cart.");
+
+        if (!currentUser) {
+            alert("You must be logged in to add to cart.");
+            return;
+        }
+        try {
+            if (!selectSize || selectSize.length === 0) {
+                alert("Please choose a size");
                 return;
             }
-            try {
-                if (!selectSize || selectSize.length === 0) {
-                    alert("Please choose a size");
-                    return;
-                }
-                const response = await fetch(`https://syx-backend-project.vercel.app/products/card/${id}`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        prod_name: product.prod_name,
-                        prod_education: product.prod_education,
-                        prod_education1: product.prod_education1,
-                        prod_price: product.prod_price,
-                        sizes: selectSize,
-                        user_id: user.uid,
-                    }),
-                });
+            const response = await fetch(`https://syx-backend-project.vercel.app/products/card/${id}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    prod_name: product.prod_name,
+                    prod_education: product.prod_education,
+                    prod_education1: product.prod_education1,
+                    prod_price: product.prod_price,
+                    sizes: selectSize,
+                    user_id: currentUser.uid,
+                }),
+            });
 
-                if (response.ok) {
-                    const data = await response.json();
-                    setCart(data);
-                    alert(`${product.prod_name} (Size :${selectSize}) added to cart!`);
-                    await updateCartCount();
+            if (response.ok) {
+                alert(`${product.prod_name} (Size :${selectSize}) added to cart!`);
+                await updateCartCount();
 
-                } else {
-                    alert("Failed to add to cart.");
-                }
-            } catch (error) {
-                console.error("Error adding to cart:", error);
+            } else {
+                alert("Failed to add to cart.");
             }
-        })
+        } catch (error) {
+            console.error("Error adding to cart:", error);
+        }
+
     };
     const handleSize = () => {
         setForm(true);
