@@ -11,7 +11,7 @@ export default function Header({ setShowLogin }) {
     const [products, setProducts] = useState([]);
     const [userInput, setUserInput] = useState("");
     const navigate = useNavigate();
-    const [cartCount, setCartCount] = useState(1);
+    const [cartCount, setCartCount] = useState(0);
 
 
     useEffect(() => {
