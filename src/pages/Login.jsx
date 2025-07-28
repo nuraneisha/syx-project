@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Row, Col, Button, Image, Form, Modal } from "react-bootstrap";
-
+import { ModalContext } from "../context/ModalContext";
 import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
@@ -12,7 +12,7 @@ import { auth } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-export default function Login({ show, setShow }) {
+export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [mobile, setMobile] = useState("");
@@ -24,6 +24,7 @@ export default function Login({ show, setShow }) {
     const [formMode, setFormMode] = useState(false);
     const [signUp, setSignUp] = useState(false);
     const [error, setError] = useState("");
+    const { showLoginModal, setShowLoginModal } = useContext(ModalContext);
 
     const provider = new GoogleAuthProvider();
     const navigate = useNavigate();
@@ -112,7 +113,6 @@ export default function Login({ show, setShow }) {
         }
     }
     const handleClose = () => {
-        setShow(false);
         setFormMode(false);
         setSignUp(false);
         setEmail("");
@@ -124,9 +124,10 @@ export default function Login({ show, setShow }) {
         setGender("");
         setName("");
         setError("");
+        setShowLoginModal(false)
     };
     return (
-        <Modal show={show} onHide={handleClose} size="lg" centered>
+        <Modal show={showLoginModal} onHide={handleClose} size="lg" centered>
             <Modal.Header closeButton />
             <Modal.Body>
                 <Row className="mx-0">

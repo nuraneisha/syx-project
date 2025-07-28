@@ -5,13 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { getAuth, signOut } from "firebase/auth";
 import { CartContext } from "../context/CartProvider"
+import { ModalContext } from "../context/ModalContext";
 
-export default function Header({ setShowLogin }) {
+export default function Header() {
     const { currentUser } = useContext(AuthContext);
     const [products, setProducts] = useState([]);
     const [userInput, setUserInput] = useState("");
     const navigate = useNavigate();
-    const { cartCount } = useContext(CartContext);
+    const { cartCount, updateCartCount } = useContext(CartContext);
+    const { setShowLoginModal } = useContext(ModalContext);
 
 
     useEffect(() => {
@@ -23,6 +25,7 @@ export default function Header({ setShowLogin }) {
                     const productData = await productResponse.json();
                     setProducts(productData);
                 }
+                await updateCartCount();
 
             } catch (error) {
                 console.error("Error fetching data", error);
@@ -30,7 +33,8 @@ export default function Header({ setShowLogin }) {
         };
 
         fetchData();
-    }, []);
+
+    }, [updateCartCount]);
     const filteredProducts = products.filter((product) =>
         product.prod_name.toUpperCase().includes(userInput.toUpperCase())
     );
@@ -83,7 +87,7 @@ export default function Header({ setShowLogin }) {
                             {/* Right: icons + search */}
                             <div className="d-flex align-items-center flex-lg-nowrap flex-wrap gap-3 mt-3 mt-lg-1 ">
                                 {!currentUser?.emailVerified ? (
-                                    <Nav.Link onClick={() => setShowLogin(true)}>
+                                    <Nav.Link onClick={() => setShowLoginModal(true)}>
                                         <i style={{ fontSize: "30px" }} className="bi bi-person-fill me-2"></i>
                                     </Nav.Link>
                                 ) : (
