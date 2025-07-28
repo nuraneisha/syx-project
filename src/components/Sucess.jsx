@@ -5,12 +5,17 @@ export default function Sucess() {
 
     const location = useLocation();
     const navigate = useNavigate();
+    const params = new URLSearchParams(location.search)
+    const sessionId = params.get("session_id");
     const { currentUser } = useContext(AuthContext)
+
     useEffect(() => {
         const fetchSuccess = async (sessionId, user_id) => {
             try {
                 await fetch(`https://syx-project.vercel.app/success?session_id=${sessionId}&user_id=${user_id}`);
-                navigate("/")
+                setTimeout(() => {
+                    navigate("/");
+                }, 2000);
             }
             catch (error) {
                 console.error(error)
@@ -18,8 +23,8 @@ export default function Sucess() {
         }
 
 
-        const params = new URLSearchParams(location.search)
-        const sessionId = params.get("session_id");
+
+
 
         if (sessionId && currentUser) {
             fetchSuccess(sessionId, currentUser.uid);
@@ -27,6 +32,12 @@ export default function Sucess() {
     }, [currentUser, location, navigate]);
 
 
-    return null;
+
+    return (
+        <div className="container">
+            <h1>Thank you for your purchase!</h1>
+            <p>Session ID: {sessionId}</p>
+        </div>
+    );
 
 }

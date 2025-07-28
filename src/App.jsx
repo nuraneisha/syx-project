@@ -40,7 +40,7 @@ export default function App() {
                 <Route path="/delete" element={<DeleteAccount />} />
                 <Route path="/review/form" element={<ReviewForm />} />
                 <Route path="/review" element={<Review />} />
-                <Route path="/sucess" element={<Success />} />
+                <Route path="/success" element={<Success />} />
             </Routes>
         </BrowserRouter>
     );
