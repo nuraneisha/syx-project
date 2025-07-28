@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Container, Row, Col, Card, Button, InputGroup, Form } from "react-bootstrap"
 import Layout from "../components/Layout"
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../context/CartProvider"
 
 export default function ShoppingCart() {
     const [product, setProduct] = useState([]);
@@ -11,6 +12,7 @@ export default function ShoppingCart() {
     const [userId, setUserId] = useState(null);
     const [selectedItems, setSelectedItems] = useState({});
     const [selected, setSelected] = useState([]);
+    const { updateCartCount } = useContext(CartContext);
     const navigate = useNavigate();
 
     const fetchData = async (userId) => {
@@ -45,25 +47,13 @@ export default function ShoppingCart() {
                 const data = await response.json();
                 console.log(data);
                 setProduct(data.items);
+                await updateCartCount();
             }
         } catch (error) {
-            console.error("Error deleteing the data", error);
+            console.error("Error deleting the data", error);
         }
 
     }
-    const totalCost = async (userId) => {
-        try {
-            const response = await fetch(`https://syx-backend-project.vercel.app/cart/checkout/${userId}`)
-            if (response.ok) {
-                const data = await response.json();
-                setCost(data);
-            }
-        }
-        catch (error) {
-            console.error("Error in calculating the total cost", error);
-        }
-    }
-
     const updateCartItem = async (cart_id, quantity, selected) => {
         try {
             await fetch("https://syx-backend-project.vercel.app/cart/select", {
@@ -88,7 +78,6 @@ export default function ShoppingCart() {
         }
     };
 
-
     const fetchSelectedItems = async (user_id) => {
         try {
             const response = await fetch(`https://syx-backend-project.vercel.app/cart/select/${user_id}`)
@@ -100,6 +89,20 @@ export default function ShoppingCart() {
         }
         catch (error) {
             console.error("Error in fetching the selected products to be displayed in product sumamary", error)
+        }
+    }
+
+    const totalCost = async (userId) => {
+        try {
+            const response = await fetch(`https://syx-backend-project.vercel.app/cart/checkout/${userId}`)
+            if (response.ok) {
+                const data = await response.json();
+                setCost(data);
+                fetchSelectedItems(userId);
+            }
+        }
+        catch (error) {
+            console.error("Error in calculating the total cost", error);
         }
     }
     useEffect(() => {
