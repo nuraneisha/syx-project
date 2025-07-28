@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Card, Row, Col, Button, Container } from "react-bootstrap";
 import Layout from "../components/Layout";
 import { getAuth } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
+import { CartContext } from "./context/CartProvider"
 
 export default function Apparel() {
     const [apparel, setApparel] = useState([]);
     const [, setCart] = useState("");
+    const { updateCartCount } = useContext(CartContext);
     const auth = getAuth();
 
     useEffect(() => {
@@ -48,6 +50,8 @@ export default function Apparel() {
                     const data = await response.json();
                     setCart(data);
                     alert("Product added to cart!");
+                    await updateCartCount();
+
                 } else {
                     alert("Failed to add to cart.");
                 }

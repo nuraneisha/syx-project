@@ -4,14 +4,14 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { getAuth, signOut } from "firebase/auth";
-
+import { CartContext } from "./context/CartProvider"
 
 export default function Header({ setShowLogin }) {
     const { currentUser } = useContext(AuthContext);
     const [products, setProducts] = useState([]);
     const [userInput, setUserInput] = useState("");
     const navigate = useNavigate();
-    const [cartCount, setCartCount] = useState(0);
+    const { cartCount } = useContext(CartContext);
 
 
     useEffect(() => {
@@ -24,18 +24,6 @@ export default function Header({ setShowLogin }) {
                     setProducts(productData);
                 }
 
-                // Fetch cart count if user is available
-                const auth = getAuth();
-                const user = auth.currentUser;
-                if (user) {
-                    const cartResponse = await fetch(`https://syx-backend-project.vercel.app/cart/${user.uid}`);
-                    if (cartResponse.ok) {
-                        const cartData = await cartResponse.json();
-                        setCartCount(cartData.items.length);
-                    } else {
-                        console.error("Cannot count items");
-                    }
-                }
             } catch (error) {
                 console.error("Error fetching data", error);
             }

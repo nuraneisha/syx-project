@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Row, Col, Container, Card, Button, Form, InputGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import { getAuth } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
+import { CartContext } from "./context/CartProvider"
 
 export default function Cards() {
     const [hover, setHover] = useState(null);
@@ -18,6 +19,7 @@ export default function Cards() {
     const [apparelResponse, setApparelResponse] = useState(false);
     const { id } = useParams();
     const auth = getAuth();
+    const { updateCartCount } = useContext(CartContext);
 
 
     useEffect(() => {
@@ -74,6 +76,7 @@ export default function Cards() {
                     const data = await response.json();
                     setCart(data);
                     alert(`${product.prod_name} (Size :${selectSize}) added to cart!`);
+                    await updateCartCount();
 
                 } else {
                     alert("Failed to add to cart.");
