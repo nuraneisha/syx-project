@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { getAuth, signOut } from "firebase/auth";
 import { CartContext } from "../context/CartProvider"
-import { ModalContext } from "../context/ModalContext";
+import { ModalContext } from "../context/ModalProvider";
 
 export default function Header() {
     const { currentUser } = useContext(AuthContext);

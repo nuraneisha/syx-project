@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Row, Col, Button, Image, Form, Modal } from "react-bootstrap";
-import { ModalContext } from "../context/ModalContext";
+import { ModalContext } from "../context/ModalProvider";
 import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
