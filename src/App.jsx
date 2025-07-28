@@ -16,7 +16,7 @@ import Update from "./pages/Update";
 import DeleteAccount from "./pages/DeleteAccount";
 import ReviewForm from "./pages/ReviewForm";
 import Review from "./components/Review";
-import Success from "./pages/Success";
+import Success from "./components/Sucess";
 
 export default function App() {
 
