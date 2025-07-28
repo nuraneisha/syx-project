@@ -12,7 +12,11 @@ export default function Sucess() {
     useEffect(() => {
         const fetchSuccess = async (sessionId, user_id) => {
             try {
-                const response = await fetch(`https://syx-project.vercel.app/success?session_id=${sessionId}&user_id=${user_id}`);
+                const response = await fetch(`https://syx-project.vercel.app/success`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ session_id: sessionId, user_id }),
+                });
                 if (response.ok) {
                     setTimeout(() => {
                         navigate("/");
