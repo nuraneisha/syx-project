@@ -12,12 +12,12 @@ export default function Sucess() {
     useEffect(() => {
         const fetchSuccess = async (sessionId, user_id) => {
             try {
-                const response = await fetch(`https://syx-project.vercel.app/success?session_id=${sessionId}&user_id=${user_id}`);
+                const response = await fetch(`https://syx-backend-project.vercel.app/success?session_id=${sessionId}&user_id=${user_id}`);
 
                 if (response.ok) {
                     setTimeout(() => {
                         navigate("/");
-                    }, 30000);
+                    }, 20000);
                 }
                 else {
                     console.error("Something went worng", response.status)
