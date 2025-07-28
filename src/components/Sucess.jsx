@@ -17,7 +17,7 @@ export default function Sucess() {
                 if (response.ok) {
                     setTimeout(() => {
                         navigate("/");
-                    }, 20000);
+                    }, 2000);
                 }
                 else {
                     console.error("Something went worng", response.status)
