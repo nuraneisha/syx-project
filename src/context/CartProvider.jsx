@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
 import { getAuth } from "firebase/auth";
-const CartContext = createContext();
+export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const [cartCount, setCartCount] = useState(0);
 
