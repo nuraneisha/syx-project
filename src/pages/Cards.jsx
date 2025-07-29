@@ -201,7 +201,7 @@ export default function Cards() {
 
                                             {form && (
                                                 <Form className="mt-3">
-                                                    <Form.Group controlId="weight" className="w-100 mb-3">
+                                                    <Form.Group controlId="weight" className="mb-3">
                                                         <Form.Label>Weight:</Form.Label>
                                                         <InputGroup>
                                                             <Form.Control type="text" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder="40" />
@@ -209,7 +209,7 @@ export default function Cards() {
                                                         </InputGroup>
                                                     </Form.Group>
 
-                                                    <Form.Group controlId="height" className="w-100 mb-3">
+                                                    <Form.Group controlId="height" className="mb-3">
                                                         <Form.Label>Height:</Form.Label>
                                                         <InputGroup>
                                                             <Form.Control type="text" value={height} onChange={(e) => setHeight(e.target.value)} placeholder="165" />
