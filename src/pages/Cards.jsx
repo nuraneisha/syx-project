@@ -239,7 +239,7 @@ export default function Cards() {
 
                             )}
 
-                            <Button onClick={insertProduct} style={{ width: "90%", borderRadius: "20px" }} disabled={product?.prod_content?.toLowerCase() === "sold out"}>Add To Cart</Button>
+                            <Button onClick={insertProduct} style={{ width: "95%", borderRadius: "20px" }} disabled={product?.prod_content?.toLowerCase() === "sold out"}>Add To Cart</Button>
 
                         </Col>
                     </Row >
