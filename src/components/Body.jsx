@@ -140,25 +140,35 @@ export default function Body() {
 
             {/* Styles for Carousel Media */}
             <style>{`
-                .carousel-media {
-                    width: 100%;
-                    height: auto;
-                    aspect-ratio: 16 / 9;
-                    object-fit: cover;
-                }
-
-                @media (max-width: 768px) {
-                    .carousel-media {
-                        aspect-ratio: 4 / 3;
+                    .carousel-container {
+                        width: 100%;
+                        max-width: 1200px;
+                        margin: 0 auto;
+                        overflow: hidden;
                     }
-                }
 
-                @media (max-width: 576px) {
                     .carousel-media {
-                        aspect-ratio: 1 / 1;
+                        width: 100%;
+                        height: auto;
+                        aspect-ratio: 16 / 9;
+                        object-fit: cover;
+                        display: block;
+                        max-width: 100%;
+                        border-radius: 10px;
                     }
-                }
-            `}</style>
+
+                    @media (max-width: 768px) {
+                        .carousel-media {
+                            aspect-ratio: 4 / 3;
+                        }
+                    }
+
+                    @media (max-width: 576px) {
+                        .carousel-media {
+                            aspect-ratio: 1 / 1;
+                        }
+                    }
+                `}</style>
         </>
     );
 }
