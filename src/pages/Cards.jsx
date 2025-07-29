@@ -138,7 +138,7 @@ export default function Cards() {
                                 <>
 
                                     <h2 className="my-3">Select Size:</h2>
-                                    <div className="d-flex flex-wrap gap-3 justify-content-center">
+                                    <div className="d-flex flex-wrap gap-2">
                                         {availableSizes.map((size) => (
                                             <Button style={{ fontWeight: "bold", fontSize: "30px", width: "80px" }} variant={selectSize === size ? "dark" : "outline-secondary"} key={size} onClick={() => setSelectSize(size)}>{size}
                                             </Button>
@@ -239,7 +239,7 @@ export default function Cards() {
 
                             )}
 
-                            <Button onClick={insertProduct} className="w-100" style={{ borderRadius: "20px" }} disabled={product?.prod_content?.toLowerCase() === "sold out"}>Add To Cart</Button>
+                            <Button onClick={insertProduct} style={{ width: "90%", borderRadius: "20px" }} disabled={product?.prod_content?.toLowerCase() === "sold out"}>Add To Cart</Button>
 
                         </Col>
                     </Row >
