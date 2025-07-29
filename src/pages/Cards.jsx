@@ -152,7 +152,7 @@ export default function Cards() {
 
                                     <Row className="my-5">
                                         <Col xs={12} md={6} className="mb-4 mb-md-0">
-                                            {product?.prod_type === "Top" ? (
+                                            {product?.prod_category == "Top" ? (
                                                 <>
                                                     <h2>Top Size Guide</h2>
                                                     <table className="table table-bordered text-center w-100">
