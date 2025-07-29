@@ -124,8 +124,6 @@ export default function Cards() {
                         <Col xs={12} md={7}>
                             <h1>{product.prod_name}</h1>
                             <h1>RM {product.prod_price?.replace("MYR", "").trim()}</h1>
-                            {console.log("Product:", product)}
-                            {console.log("Category:", product?.prod_category)}
 
                             {product?.prod_category == "Apparel" ? (
                                 <>
@@ -154,45 +152,47 @@ export default function Cards() {
 
                                     <Row className="my-5">
                                         <Col md={6}>
-                                            <h2>Size Guide</h2>
-
-                                            <table className="table table-bordered text-center w-100">
-                                                <thead style={{ border: "1px solid black" }}>
-                                                    <tr>
-                                                        <th style={{ border: "1px solid black" }}>Size</th>
-                                                        <th style={{ border: "1px solid black" }}>Weight Range(kg)</th>
-                                                        <th style={{ border: "1px solid black" }}>Height Range(cm)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody >
-                                                    <tr>
-                                                        <td style={{ border: "1px solid black" }}>S</td>
-                                                        <td style={{ border: "1px solid black" }}>40- 55</td>
-                                                        <td style={{ border: "1px solid black" }}>140- 165</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style={{ border: "1px solid black" }}>M</td>
-                                                        <td style={{ border: "1px solid black" }}>55 -75</td>
-                                                        <td style={{ border: "1px solid black" }}>165- 175</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style={{ border: "1px solid black" }}>L</td>
-                                                        <td style={{ border: "1px solid black" }}>75- 90</td>
-                                                        <td style={{ border: "1px solid black" }}>170- 180</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style={{ border: "1px solid black" }}>XL</td>
-                                                        <td style={{ border: "1px solid black" }}>90- 100</td>
-                                                        <td style={{ border: "1px solid black" }}>175- 185</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style={{ border: "1px solid black" }}>XXL</td>
-                                                        <td style={{ border: "1px solid black" }}>100- 200</td>
-                                                        <td style={{ border: "1px solid black" }}>180- 190</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
+                                            {product?.prod_type === "Top" ? (
+                                                <>
+                                                    <h2>Top Size Guide</h2>
+                                                    <table className="table table-bordered text-center w-100">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Size</th>
+                                                                <th>Pit to Pit (inches)</th>
+                                                                <th>Length (inches)</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr><td>S</td><td>18</td><td>27</td></tr>
+                                                            <tr><td>M</td><td>20</td><td>28</td></tr>
+                                                            <tr><td>L</td><td>22</td><td>29</td></tr>
+                                                            <tr><td>XL</td><td>24</td><td>30</td></tr>
+                                                            <tr><td>XXL</td><td>26</td><td>31</td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <h2>Bottom Size Guide</h2>
+                                                    <table className="table table-bordered text-center w-100">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Size</th>
+                                                                <th>Waist (inches)</th>
+                                                                <th>Length (inches)</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr><td>S</td><td>28</td><td>36</td></tr>
+                                                            <tr><td>M</td><td>30</td><td>37</td></tr>
+                                                            <tr><td>L</td><td>32</td><td>38</td></tr>
+                                                            <tr><td>XL</td><td>34</td><td>39</td></tr>
+                                                            <tr><td>XXL</td><td>36</td><td>40</td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </>
+                                            )}
                                         </Col>
                                         <Col md={6}>
                                             <Button variant="outline-light" onClick={handleSize}>
