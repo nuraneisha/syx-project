@@ -9,7 +9,7 @@ import {
     sendEmailVerification,
 } from "firebase/auth";
 import { AuthContext } from "../context/AuthProvider";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
