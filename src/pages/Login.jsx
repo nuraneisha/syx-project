@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { Row, Col, Button, Image, Form, Modal } from "react-bootstrap";
 import { ModalContext } from "../context/ModalProvider";
 import {
@@ -8,7 +8,6 @@ import {
     signInWithPopup,
     sendEmailVerification,
 } from "firebase/auth";
-import { AuthContext } from "../context/AuthProvider";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -28,12 +27,20 @@ export default function Login() {
 
     const provider = new GoogleAuthProvider();
     const navigate = useNavigate();
-    const { currentUser } = useContext(AuthContext);
 
     const handleGoogleLogin = async (event) => {
         event.preventDefault();
         try {
-            await signInWithPopup(auth, provider);
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            if (user.emailVerified) {
+                handleClose();
+                navigate("/");
+            } else {
+                setError("Please verify your email before continuing.");
+            }
+
         }
         catch (error) {
             console.error(error);
@@ -44,13 +51,21 @@ export default function Login() {
         event.preventDefault();
         setError("");
         try {
-            await signInWithEmailAndPassword(auth, email, password)
+            const userCredential = await signInWithEmailAndPassword(auth, email, password)
+            const user = userCredential.user;
+
+            if (user.emailVerified) {
+                handleClose();
+                navigate("/");
+            } else {
+                setError("Please verify your email before continuing.");
+            }
 
         }
         catch (error) {
             console.error(error);
             if (error.code === "auth/invalid-credential") {
-                setError("Please enter the correct email/passwrod.");
+                setError("Please enter the correct email/password.");
             }
             else {
                 setError("Failed to sign up. Please try again.");
@@ -114,12 +129,6 @@ export default function Login() {
         setShowLoginModal(false)
     };
 
-    useEffect(() => {
-        if (currentUser) {
-            handleClose();
-            navigate("/")
-        }
-    }, [currentUser, navigate])
     return (
         <Modal show={showLoginModal} onHide={handleClose} size="lg" centered>
             <Modal.Header closeButton />
