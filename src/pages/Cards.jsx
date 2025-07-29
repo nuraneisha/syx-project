@@ -53,6 +53,7 @@ export default function Cards() {
             return;
         }
         try {
+            console.log(product.product_category)
             if (product.product_category !== "Apparel") {
                 if (!selectSize || selectSize.length === 0) {
                     alert("Please choose a size");
