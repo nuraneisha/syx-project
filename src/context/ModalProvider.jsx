@@ -19,9 +19,6 @@ export function ModalProvider({ children }) {
             setShowLoginModal(false);
             const verified = currentUser.emailVerified || false;
             setIsVerified(verified);
-            if (!verified) {
-                alert("Please verify your email")
-            }
             setLoading(false);
         }
 
