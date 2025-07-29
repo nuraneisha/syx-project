@@ -138,7 +138,7 @@ export default function Cards() {
                                 <>
 
                                     <h2 className="my-3">Select Size:</h2>
-                                    <div className="d-flex flex-wrap gap-3">
+                                    <div className="d-flex flex-wrap gap-3 justify-content-center">
                                         {availableSizes.map((size) => (
                                             <Button style={{ fontWeight: "bold", fontSize: "30px", width: "80px" }} variant={selectSize === size ? "dark" : "outline-secondary"} key={size} onClick={() => setSelectSize(size)}>{size}
                                             </Button>
@@ -151,7 +151,7 @@ export default function Cards() {
                                     )}
 
                                     <Row className="my-5">
-                                        <Col md={6}>
+                                        <Col xs={12} md={6} className="mb-4 mb-md-0">
                                             {product?.prod_type === "Top" ? (
                                                 <>
                                                     <h2>Top Size Guide</h2>
@@ -194,32 +194,28 @@ export default function Cards() {
                                                 </>
                                             )}
                                         </Col>
-                                        <Col md={6}>
+                                        <Col xs={12} md={6}>
                                             <Button variant="outline-light" onClick={handleSize}>
                                                 <h2 style={{ color: "black", textDecoration: "underline" }}>Find my Size</h2>
                                             </Button>
 
                                             {form && (
                                                 <Form className="mt-3">
-                                                    <InputGroup className="mb-3">
-                                                        <Form.Group controlId="weight">
-                                                            <Form.Label>Weight:</Form.Label>
+                                                    <Form.Group controlId="weight" className="w-100 mb-3">
+                                                        <Form.Label>Weight:</Form.Label>
+                                                        <InputGroup>
                                                             <Form.Control type="text" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder="40" />
-                                                        </Form.Group>
-                                                        <InputGroup.Text style={{ transform: "translateY(30px)", height: "40px", borderRadius: "10px" }}>
-                                                            KG
-                                                        </InputGroup.Text>
-                                                    </InputGroup>
+                                                            <InputGroup.Text>KG</InputGroup.Text>
+                                                        </InputGroup>
+                                                    </Form.Group>
 
-                                                    <InputGroup className="mb-3">
-                                                        <Form.Group controlId="height">
-                                                            <Form.Label>Height:</Form.Label>
+                                                    <Form.Group controlId="height" className="w-100 mb-3">
+                                                        <Form.Label>Height:</Form.Label>
+                                                        <InputGroup>
                                                             <Form.Control type="text" value={height} onChange={(e) => setHeight(e.target.value)} placeholder="165" />
-                                                        </Form.Group>
-                                                        <InputGroup.Text style={{ transform: "translateY(30px)", height: "40px", borderRadius: "10px" }}>
-                                                            CM
-                                                        </InputGroup.Text>
-                                                    </InputGroup>
+                                                            <InputGroup.Text>CM</InputGroup.Text>
+                                                        </InputGroup>
+                                                    </Form.Group>
 
                                                     <Button variant="outline-dark" onClick={handleCheckSize}>
                                                         Check Size
@@ -243,7 +239,7 @@ export default function Cards() {
 
                             )}
 
-                            <Button onClick={insertProduct} style={{ width: "90%", borderRadius: "20px" }} disabled={product?.prod_content?.toLowerCase() === "sold out"}>Add To Cart</Button>
+                            <Button onClick={insertProduct} className="w-100" style={{ borderRadius: "20px" }} disabled={product?.prod_content?.toLowerCase() === "sold out"}>Add To Cart</Button>
 
                         </Col>
                     </Row >
