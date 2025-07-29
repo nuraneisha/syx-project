@@ -152,8 +152,7 @@ export default function Cards() {
 
                                     <Row className="my-5">
                                         <Col xs={12} md={6} className="mb-4 mb-md-0">
-                                            {console.log(product.prod_category)}
-                                            {product?.prod_category == "Top" ? (
+                                            {product?.prod_category == "Tops" ? (
                                                 <>
                                                     <h2>Top Size Guide</h2>
                                                     <table className="table table-bordered text-center w-100">
