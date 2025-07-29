@@ -37,10 +37,20 @@ export default function Sucess() {
 
 
     return (
-        <div className="container">
-            <h1>Thank you for your purchase!</h1>
-            <p>Session ID: {sessionId}</p>
-        </div>
+        <>
+            <Container className="d-flex justify-content-center align-items-center bg-light">
+                <Card>
+                    <Card.Body>
+                        <Card.Title>🎉 Thank you for your purchase!! 🎉 </Card.Title>
+                        <Card.Text className="text-muted">Your purchase was successful.</Card.Text>
+                        <Card.Text className="text-muted">You can view your purchase in your profile. We hope you like the products!</Card.Text>
+                        <Card.Text className="text-muted">We’d love to hear your thoughts — feel free to share feedback about your experience!</Card.Text>
+                    </Card.Body>
+                </Card>
+
+            </Container>
+        </>
+
     );
 
 }
