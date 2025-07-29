@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider"
 import { useContext, useEffect } from "react"
+import { Container, Card } from "react-bootstrap"
 export default function Sucess() {
 
     const location = useLocation();
