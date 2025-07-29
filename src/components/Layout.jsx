@@ -15,6 +15,7 @@ export default function Layout({ children }) {
                 {children}
             </div>
             <Footer />
+            <button onClick={() => setShowLoginModal(true)}>Show Login Modal</button>
             {showLoginModal && <Login />}
         </div>
     );
