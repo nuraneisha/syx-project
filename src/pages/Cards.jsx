@@ -53,10 +53,13 @@ export default function Cards() {
             return;
         }
         try {
-            if (!selectSize || selectSize.length === 0) {
-                alert("Please choose a size");
-                return;
+            if (product.product_category !== "Apparel") {
+                if (!selectSize || selectSize.length === 0) {
+                    alert("Please choose a size");
+                    return;
+                }
             }
+
             const response = await fetch(`https://syx-backend-project.vercel.app/products/card/${id}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
