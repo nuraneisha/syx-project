@@ -49,6 +49,8 @@ export default function ShoppingCart() {
                 console.log(data);
                 setProduct(data.items);
                 await updateCartCount();
+                await totalCost(userId);
+                await fetchSelectedItems(userId);
             }
         } catch (error) {
             console.error("Error deleting the data", error);
