@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Row, Col, Button, Image, Form, Modal } from "react-bootstrap";
 import { ModalContext } from "../context/ModalProvider";
 import {
@@ -8,8 +8,8 @@ import {
     signInWithPopup,
     sendEmailVerification,
 } from "firebase/auth";
-import { auth } from "../../firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { AuthContext } from "../context/AuthProvider";
+import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -28,18 +28,12 @@ export default function Login() {
 
     const provider = new GoogleAuthProvider();
     const navigate = useNavigate();
+    const { currentUser } = useContext(AuthContext);
 
     const handleGoogleLogin = async (event) => {
         event.preventDefault();
         try {
             await signInWithPopup(auth, provider);
-            const unsubscribe = onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    handleClose();
-                    navigate("/");
-                    unsubscribe();
-                }
-            });
         }
         catch (error) {
             console.error(error);
@@ -51,13 +45,6 @@ export default function Login() {
         setError("");
         try {
             await signInWithEmailAndPassword(auth, email, password)
-            const unsubscribe = onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    handleClose();
-                    navigate("/");
-                    unsubscribe();
-                }
-            });
 
         }
         catch (error) {
@@ -126,6 +113,13 @@ export default function Login() {
         setError("");
         setShowLoginModal(false)
     };
+
+    useEffect(() => {
+        if (currentUser) {
+            handleClose();
+            navigate("/")
+        }
+    }, [currentUser, navigate])
     return (
         <Modal show={showLoginModal} onHide={handleClose} size="lg" centered>
             <Modal.Header closeButton />
