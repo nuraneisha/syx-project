@@ -113,7 +113,7 @@ export default function Cards() {
     return (
         <>
             <Layout>
-                <Container className="m-5" fluid>
+                <Container className="my-5 px-3" fluid>
                     <Row key={product.prod_id}>
                         <Col xs={12} md={5} className="mb-4 mb-md-0">
                             <Card className="w-100 h-100">
