@@ -74,7 +74,14 @@ export default function Cards() {
             });
 
             if (response.ok) {
-                alert(`${product.prod_name} (Size :${selectSize}) added to cart!`);
+                if (product.prod_category == "Apparel") {
+                    alert(`${product.prod_name}  added to cart!`);
+
+                }
+                else {
+                    alert(`${product.prod_name} (Size :${selectSize}) added to cart!`);
+                }
+
                 await updateCartCount();
 
             } else {
