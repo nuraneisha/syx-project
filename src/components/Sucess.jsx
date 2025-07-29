@@ -18,7 +18,7 @@ export default function Sucess() {
                 if (response.ok) {
                     setTimeout(() => {
                         navigate("/");
-                    }, 2000);
+                    }, 5000);
                 }
                 else {
                     console.error("Something went worng", response.status)
@@ -39,13 +39,13 @@ export default function Sucess() {
 
     return (
         <>
-            <Container className="d-flex justify-content-center align-items-center bg-light">
-                <Card>
+            <Container className="d-flex justify-content-center align-items-center min-vh-100">
+                <Card className="p-3" style={{ maxWidth: "500px", width: "100%" }}>
                     <Card.Body>
-                        <Card.Title>🎉 Thank you for your purchase!! 🎉 </Card.Title>
-                        <Card.Text className="text-muted">Your purchase was successful.</Card.Text>
-                        <Card.Text className="text-muted">You can view your purchase in your profile. We hope you like the products!</Card.Text>
-                        <Card.Text className="text-muted">We’d love to hear your thoughts — feel free to share feedback about your experience!</Card.Text>
+                        <Card.Title className="text-center">🎉 Thank you for your purchase!! 🎉 </Card.Title>
+                        <Card.Text className="text-muted text-center">Your purchase was successful.</Card.Text>
+                        <Card.Text className="text-muted text-center">You can view your purchase in your profile. We hope you like the products!</Card.Text>
+                        <Card.Text className="text-muted text-center">We’d love to hear your thoughts — feel free to share feedback about your experience!</Card.Text>
                     </Card.Body>
                 </Card>
 
